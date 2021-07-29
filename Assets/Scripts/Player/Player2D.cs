@@ -23,7 +23,7 @@ public class Player2D : Player
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            Movement();
+            MoveForward();
         }
         KeepPlayerInScreen();
     }
@@ -32,15 +32,15 @@ public class Player2D : Player
     {
         OnCollision(collision);
     }
-    protected override void Movement()
+    protected override void MoveForward()
     {
-        base.Movement();
+        base.MoveForward();
         rb2D.AddForce(transform.up * force * speed);
     }
     protected override void CalculateOBjSize()
     {
         base.CalculateOBjSize();
         objectHeight = this.transform.GetComponent<SpriteRenderer>().bounds.size.y/2;
-        objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+        objectWidth = this.transform.GetComponent<SpriteRenderer>().bounds.size.x/2;
     }
 }

@@ -9,7 +9,7 @@ public class Player3D : Player
     {
         rb3D = GetComponentInChildren<Rigidbody>();
         player = this.transform;
-      //  CalculateOBjSize();
+        CalculateOBjSize();
     }
     void FixedUpdate()
     {
@@ -23,24 +23,26 @@ public class Player3D : Player
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            Movement();
+            MoveForward();
         }
-      //  KeepPlayerInScreen();
+        KeepPlayerInScreen();
     }
     private void OnTriggerEnter(Collider other)
     {
         OnCollision(other);
     }
 
-    protected override void Movement()
+    protected override void MoveForward()
     {
-        base.Movement();
+        base.MoveForward();
         rb3D.AddForce(transform.up * force * speed);
     }
     protected override void CalculateOBjSize()
     {
         base.CalculateOBjSize();
-        objectHeight = player.GetComponentInChildren<SpriteRenderer>().bounds.size.y;
-        objectWidth = player.GetComponentInChildren<SpriteRenderer>().bounds.size.x / 2;
+        Mesh mesh = player.GetComponentInChildren<MeshFilter>().mesh;
+        Bounds bounds = mesh.bounds;
+        objectHeight = bounds.size.y * this.transform.localScale.y;
+        objectWidth = bounds.size.x * this.transform.localScale.x;
     }
 }

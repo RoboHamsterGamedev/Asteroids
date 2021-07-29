@@ -8,14 +8,6 @@ public class Standart_Weapon : Weapon
     [SerializeField] List<GameObject> bulletsPool = new List<GameObject>();
     [SerializeField] Transform _bulletFolder;
 
-    private void Awake()
-    {
-       // _bulletFolder = GameObject.FindGameObjectWithTag("BulletPool").transform;
-    }
-    private void OnDisable()
-    {
-      //  CleanBulletsPool();
-    }
     public override void Shoot()
     {
         base.Shoot();
@@ -43,15 +35,4 @@ public class Standart_Weapon : Weapon
         _bullet.SetActive(false);
         bulletsPool.Add(_bullet); 
     }
-
-   /* void CleanBulletsPool()
-    {
-        bulletsPool.Clear();
-        var bullets[] = _bulletFolder.GetComponentsInChildren[F]
-        foreach (var bullet in bulletsPool)
-        {
-            Destroy(bullet);
-        }
-        
-    }*/
 }

@@ -36,16 +36,9 @@ public class Laser_Weapon : Weapon
         {
             playerPos = player.position;
             direction = player.up * laserdistance;
-            Debug.DrawLine(playerPos, direction, Color.red);
-
             CheckCollisions();
             Effect();
             MinusLaserPower();
-        }
-        else
-        {
-            //denied sound
-            //ui blink
         }
        
         void CheckCollisions()

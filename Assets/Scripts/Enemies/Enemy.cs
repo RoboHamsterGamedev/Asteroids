@@ -18,11 +18,9 @@ public class Enemy : MonoBehaviour
         Moving();
     }
 
-    public virtual void Moving()
-    
-    {}
+    public virtual void Moving() {}
 
-    public virtual void Damage(int amt){ }
+    public virtual void Damage(int amt){}
 
     public virtual void Shoot() {}
 
@@ -39,18 +37,16 @@ public class Enemy : MonoBehaviour
         var pos = this.transform.position;
         var screenWidth = GameMaster.instance.screenWidth;
         var screenHeight = GameMaster.instance.screenHeight;
-        var isOffScreen =false;
-        // Debug.Log("position: "+ pos+ " width "+ screenWidth + " heigh" + screenHeight);
+        bool isOffScreen;
         if (pos.x > screenWidth + safeDistance || pos.x < (screenWidth * -1) - safeDistance)
         {
             isOffScreen =true;
         }
          else if (pos.y > screenHeight + safeDistance || pos.y < (screenHeight * -1) - safeDistance)
-          {
+        {
             isOffScreen =true;
-          }
+        }
         else isOffScreen =false;
-
         if (isOffScreen == true)
         {
             Destroy(parent);

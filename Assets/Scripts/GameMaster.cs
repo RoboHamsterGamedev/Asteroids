@@ -8,7 +8,10 @@ public class GameMaster : MonoBehaviour
     public static GameMaster instance;
     private int score = 0;
     public delegate void ChangeVisual();
-    public static event ChangeVisual onVisualChange; //создаем событие
+    public static event ChangeVisual onVisualChange;
+    public delegate void GameOverEvent(int score);
+    public static event GameOverEvent onGameOver;
+    bool IsGameOver = false;
     public float screenWidth;
     public float screenHeight;
 
@@ -19,22 +22,21 @@ public class GameMaster : MonoBehaviour
         CalculateScreenSize();
     }
 
+    void CalculateScreenSize()
+    {
+        var screenBoundaries = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        screenWidth = screenBoundaries.x;
+        screenHeight = screenBoundaries.y;
+    }
     public void AddScore(int amt)
     {
-        score += amt;
-        UIManager.instance.ChangeScore(score);
+        if (!IsGameOver)
+        {
+            score += amt;
+            UIManager.instance.ChangeScore(score);
+        }
     }
-    public void GameOver()
-    {
-        UIManager.instance.GameOverUI(score);
-    }
-
-    public void Restart()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
-
+   
     public void VisualChangeButoon() 
     { 
         if (onVisualChange != null)
@@ -42,14 +44,22 @@ public class GameMaster : MonoBehaviour
             onVisualChange(); 
         }
     }
-
-    void CalculateScreenSize()
+    public void GameOver()
     {
-        var screenBoundaries = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        screenWidth = screenBoundaries.x;
-        screenHeight = screenBoundaries.y;
-
-        Debug.Log(" width " + screenWidth + " heigh" + screenHeight);
+        if (onGameOver != null)
+        {
+            onGameOver(score);
+        }
+        //UIManager.instance.GameOverUI(score);
+    }
+    public void Restart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
         if (instance == null) { instance = this.transform.GetComponent<UIManager>(); }
     }
 
-    void Update()
+    private void Start()
     {
-        
+        GameMaster.onGameOver += GameOverUI;
     }
     public void LaserPowerUI(float currentLaserPower)
     {
@@ -42,11 +42,16 @@ public class UIManager : MonoBehaviour
     public void ChangeScore(int amt)
     {
         scoreText.text = "Score: " + amt;
-    }
+    }  
 
     public void GameOverUI(int score)
     {
-        totalScoreText.text = "Total Score: " + score;
+        totalScoreText.text = "Total Score: " + score; 
         gameOver.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        GameMaster.onGameOver -= GameOverUI;
     }
 }

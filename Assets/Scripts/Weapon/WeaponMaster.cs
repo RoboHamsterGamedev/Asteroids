@@ -9,27 +9,32 @@ public class WeaponMaster : MonoBehaviour
     Weapon[] weapons;
     int activeWeaponIndex = 0;
     Weapon activeWeapon;
+    bool isGameOver =false;
     private void Start()
     {
         GetAllWeapons();
         activeWeapon = weapons[activeWeaponIndex];
         GameMaster.onVisualChange += ChangeVisual;
+        GameMaster.onGameOver += GameOver;
     }
 
     private void ChangeVisual()
     {
-        Debug.Log("Смена оружия");
         GetAllWeapons();
         activeWeapon = weapons[activeWeaponIndex];
     }
 
+    private void GameOver(int score)
+    {
+        isGameOver = true;
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isGameOver)
         {
             activeWeapon.Shoot();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftControl))
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && !isGameOver)
         {
             ChangeWeapon();
         }
@@ -37,7 +42,9 @@ public class WeaponMaster : MonoBehaviour
 
     void GetAllWeapons()
     {
-        if (weapons!=null) { Array.Clear(weapons, 0, weapons.Length); }
+        if (weapons!=null) { 
+            Array.Clear(weapons, 0, weapons.Length); 
+        }
         weaponParent = GameObject.FindGameObjectWithTag("Weapon");
         weapons = weaponParent.GetComponentsInChildren<Weapon>();
     }

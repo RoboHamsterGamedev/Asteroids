@@ -6,7 +6,6 @@ public class SwapVisualObject : MonoBehaviour
 {
     [SerializeField] protected GameObject body2D;
     [SerializeField] protected GameObject body3D;
-    // Start is called before the first frame update
     void OnEnable()
     {
         Prepare();
@@ -16,13 +15,17 @@ public class SwapVisualObject : MonoBehaviour
     {
         OnDeath();
     }
+    protected void Prepare()
+    {
+        GameMaster.onVisualChange += ChangeVisual;
+        body2D = this.GetComponentInChildren<Rigidbody2D>(true).gameObject;
+        body3D = this.GetComponentInChildren<Rigidbody>(true).gameObject;
+    }
     public void ChangeVisual()
     {
-        Debug.Log("VisualChange1");
-        // GameMaster.onVisualChange -= ChangeVisual;
         if (body2D != null)
         {
-            if (body2D.activeSelf) //
+            if (body2D.activeSelf) 
             {
                 SwapBodies(body2D, body3D);
             }
@@ -37,12 +40,6 @@ public class SwapVisualObject : MonoBehaviour
         futureBody.SetActive(true);
     }
 
-    protected void Prepare()
-    {
-        GameMaster.onVisualChange += ChangeVisual;
-        body2D = this.GetComponentInChildren<Rigidbody2D>(true).gameObject;
-        body3D = this.GetComponentInChildren<Rigidbody>(true).gameObject;
-    }
     protected void OnDeath()
     {
         GameMaster.onVisualChange -= ChangeVisual;

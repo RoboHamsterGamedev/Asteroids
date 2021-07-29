@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //[SerializeField] Rigidbody2D rb2D;
     public static Player instance;
     protected Transform player;
     protected float objectWidth;
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
     {
         Vector3 viewPos = player.position;
         viewPos.x = Mathf.Clamp(viewPos.x, screenWidth * -1 + objectWidth, screenWidth - objectWidth);
-        viewPos.y = Mathf.Clamp(viewPos.y, screenHeight* -1, screenHeight - objectHeight); 
+        viewPos.y = Mathf.Clamp(viewPos.y, screenHeight* -1 + objectHeight/2, screenHeight - objectHeight/2); 
         player.position = viewPos;
     }
 
@@ -42,8 +41,8 @@ public class Player : MonoBehaviour
             this.enabled = false;
         }
     }
-
-    protected virtual void Movement (){}
+  
+    protected virtual void MoveForward (){}
 
     protected virtual void CalculateOBjSize() { }
 }

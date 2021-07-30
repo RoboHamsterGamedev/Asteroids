@@ -10,6 +10,7 @@ public class Player2D : Player
         rb2D = GetComponentInChildren<Rigidbody2D>();
         player = this.transform;
         CalculateOBjSize();
+        animator = GetComponent<Animator>();
     }
     void FixedUpdate()
     {

@@ -11,7 +11,7 @@ public class UFO : Enemy
         target = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating("CheckIfLeftScreen", 4, 4);
     }
-
+    
     public override void Moving()
     {
         base.Moving();
@@ -22,6 +22,7 @@ public class UFO : Enemy
     {
         base.Damage(amt);
         GameMaster.instance.AddScore(20);
-        Destroy(parent.gameObject);
+        Death();
+        
     }
 }

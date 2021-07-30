@@ -12,7 +12,9 @@ public class Asteroids : Enemy
         var spawnRotation = Random.Range(0, 359);
         this.transform.rotation = Quaternion.Euler(0, 0, spawnRotation);
         InvokeRepeating("CheckIfLeftScreen", 4, 4);
+        
     }
+
    
     public override void Moving()
     {
@@ -24,15 +26,17 @@ public class Asteroids : Enemy
     {
         base.Damage(amt);
         GameMaster.instance.AddScore(30/health);
+        
         if (amt>=health) 
-        { 
-            Destroy(parent.gameObject); 
+        {
+            Death();
         }
         else
         {
             BreakIntoParticles();
             Destroy(parent.gameObject);
         }
+        
     }
 
     private void BreakIntoParticles()

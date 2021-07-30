@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     protected Transform player;
     protected float objectWidth;
     protected float objectHeight;
+    protected Animator animator;
 
     float screenWidth;
     float screenHeight;
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
         {
             GameMaster.instance.GameOver();
             this.enabled = false;
+            if (animator!=null)
+            { this.animator.SetTrigger("Death"); }
         }
     }
   

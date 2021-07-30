@@ -8,6 +8,7 @@ TagManager:
   - BulletPool
   - Enemy
   - EndOfUniverse
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX

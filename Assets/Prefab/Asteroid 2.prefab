@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8226121270871309589}
   - component: {fileID: 3692821524097226126}
   - component: {fileID: 103755763088797240}
-  - component: {fileID: 422177188625601669}
+  - component: {fileID: 2472470091421444847}
   m_Layer: 8
   m_Name: Asteroid2D
   m_TagString: Enemy
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3269283116692952862, guid: e7eac0909c72a1b40a3c7849f3bf45e4,
+  m_Sprite: {fileID: 1488312301029771355, guid: e7eac0909c72a1b40a3c7849f3bf45e4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 1
---- !u!95 &422177188625601669
+--- !u!95 &2472470091421444847
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 542245391941669286}
   - component: {fileID: 6601915263532968742}
   m_Layer: 8
-  m_Name: Asteroid 1
+  m_Name: Asteroid 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 
     protected GameObject parent;
     float safeDistance = 2;
+    protected Animator animator;
 
     private void Awake()
     {
@@ -20,17 +21,17 @@ public class Enemy : MonoBehaviour
 
     public virtual void Moving() {}
 
-    public virtual void Damage(int amt){}
+    public virtual void Damage(int amt){
+    }
+    public virtual void Death()
+    {
+        this.gameObject.tag = "DeadEnemy";
+        if (TryGetComponent(out Animator animator))
+            animator.SetTrigger("EnemyDeath"); 
+        Destroy(parent.gameObject, 1);
+    }
 
     public virtual void Shoot() {}
-
-    protected void OnCollision(Component collision)
-    {
-        if (collision.tag == "EndOfUniverse")
-        {
-            Destroy(parent.gameObject);
-        }
-    }
 
    protected void CheckIfLeftScreen()
     {

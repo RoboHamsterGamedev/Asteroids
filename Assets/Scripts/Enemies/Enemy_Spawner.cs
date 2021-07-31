@@ -6,10 +6,11 @@ public class Enemy_Spawner : MonoBehaviour
 {
     [SerializeField] GameObject[] enemies = new GameObject[6];
     [SerializeField] float spawnRate;
-    [SerializeField] int safetyDistance = 2;
+    [SerializeField] int safetyDistance = 10;
     bool is2D = true;
     float screenWidth;
     float screenHeight;
+    Transform player;
 
     private void Start()
     {
@@ -20,11 +21,13 @@ public class Enemy_Spawner : MonoBehaviour
     {
         screenWidth = GameMaster.instance.screenWidth;
         screenHeight = GameMaster.instance.screenHeight;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         SpawnEnemy();
         SpawnEnemy();
         SpawnEnemy();
         InvokeRepeating("SpawnEnemy", spawnRate, spawnRate);
         GameMaster.onVisualChange += ChangeVisual;
+
     }
     
     void ChangeVisual()
@@ -46,11 +49,16 @@ public class Enemy_Spawner : MonoBehaviour
     {
         var randomX = Random.Range(-screenWidth, screenWidth);
         var randomY = Random.Range(-screenHeight, screenHeight);
-        var spawnPosition = new Vector3(randomX, randomY);
-        if (!Physics.CheckSphere(spawnPosition, safetyDistance, 8)) 
-        { 
-            return spawnPosition; 
+        var spawnPosition = new Vector3(randomX, randomY,0);
+        Vector3 delta = spawnPosition - player.position;
+        if (delta.x>safetyDistance|| delta.y > safetyDistance)
+        {
+            return spawnPosition;
         }
-        else return CalculatePosition();
+        else
+        {
+             return CalculatePosition();
+        }
+
     }
 }

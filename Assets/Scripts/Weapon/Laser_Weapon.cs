@@ -11,7 +11,7 @@ public class Laser_Weapon : Weapon
     private int laserdistance = 50;
     private float laserFullPower = 60;
     private float laserCurrentPower;
-    private float oneLaserCost = 10;
+    private float oneLaserCost = 5;
     private Vector3 direction;
 
     private void OnEnable()

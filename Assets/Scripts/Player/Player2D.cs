@@ -26,6 +26,10 @@ public class Player2D : Player
         {
             MoveForward();
         }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {   isMovingForward = false;
+            animator.SetBool("MoveForward", isMovingForward);
+        }
         KeepPlayerInScreen();
     }
 
@@ -37,6 +41,11 @@ public class Player2D : Player
     {
         base.MoveForward();
         rb2D.AddForce(transform.up * force * speed);
+        if (!isMovingForward)
+        {
+            isMovingForward = true;
+            animator.SetBool("MoveForward", isMovingForward);
+        }
     }
     protected override void CalculateOBjSize()
     {

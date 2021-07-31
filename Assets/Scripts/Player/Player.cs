@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
     protected float objectHeight;
     protected Animator animator;
 
+    protected bool isMovingForward = false;
+
     float screenWidth;
     float screenHeight;
     protected float force = 1;
     protected float speed = 3;
-    protected float rotSpeed = 5;
+    protected float rotSpeed = 3;
 
     private void Awake()
     {
@@ -45,7 +47,10 @@ public class Player : MonoBehaviour
         }
     }
   
-    protected virtual void MoveForward (){}
+    protected virtual void MoveForward ()
+    {
+       
+    }
 
     protected virtual void CalculateOBjSize() { }
 }

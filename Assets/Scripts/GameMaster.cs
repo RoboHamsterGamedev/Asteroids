@@ -50,7 +50,6 @@ public class GameMaster : MonoBehaviour
         {
             onGameOver(score);
         }
-        //UIManager.instance.GameOverUI(score);
     }
     public void Restart()
     {

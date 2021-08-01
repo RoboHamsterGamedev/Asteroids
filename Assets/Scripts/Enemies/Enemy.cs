@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     protected GameObject parent;
-    float safeDistance = 2;
+    float safeZone = 2;
     protected Animator animator;
 
     private void Awake()
@@ -39,11 +39,12 @@ public class Enemy : MonoBehaviour
         var screenWidth = GameMaster.instance.screenWidth;
         var screenHeight = GameMaster.instance.screenHeight;
         bool isOffScreen;
-        if (pos.x > screenWidth + safeDistance || pos.x < (screenWidth * -1) - safeDistance)
+
+        if (pos.x > screenWidth + safeZone || pos.x < (screenWidth * -1) - safeZone)
         {
             isOffScreen =true;
         }
-         else if (pos.y > screenHeight + safeDistance || pos.y < (screenHeight * -1) - safeDistance)
+         else if (pos.y > screenHeight + safeZone || pos.y < (screenHeight * -1) - safeZone)
         {
             isOffScreen =true;
         }
